@@ -1,4 +1,4 @@
-# aws-lambda-pandas-s3
+# AWS Segment Pre-Processing Data Pipeline
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
