@@ -12,7 +12,7 @@ def lambda_handler(event, context):
     # Load raw data from AWS SNS into Pandas DataFrame
     df_raw_albums = pd.DataFrame.from_dict(event["Records"][0]["Sns"]["Message"])
     
-    """Section: Initial transformations & SQL Registration for staging tables"""
+    """Section: Example of initial transformations & SQL registration for staging tables"""
     # stg_albums
     sql.register_temp_table(
         frame=stg_albums.run(df_raw_albums),

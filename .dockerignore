@@ -1,0 +1,20 @@
+# VS Code folders
+.vscode
+
+# Sample dataset
+data/*
+
+# Pip folders & files
+Pipfile
+Pipfile.lock
+
+# Test folders & files
+test.main.py
+test/*
+
+# Git folders & file
+.gitignore
+.git/*
+
+# Terraform folders & file
+terraform/*
