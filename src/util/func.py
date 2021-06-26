@@ -5,7 +5,7 @@ from ruamel import yaml
 
 def sample_event() -> dict:
     """Get sample SQS event from local filesystem"""
-    f_sample_event = open('./sample_event.json')
+    f_sample_event = open('./data/sample_event.json')
     json_sample_event = json.load(f_sample_event)
     f_sample_event.close()
     return json_sample_event
