@@ -1,4 +1,4 @@
-# aws-pandasql-datalake
+# aws-lambda-pandas-s3
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
