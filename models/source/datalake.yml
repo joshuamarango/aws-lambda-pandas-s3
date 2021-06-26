@@ -6,7 +6,7 @@ dim_albums:
     - name: album_id
 
 dim_album_songs:
-  name: dim_albums
+  name: dim_album_songs
   partitions:
     - name: song_album_id
 
