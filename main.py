@@ -1,8 +1,13 @@
 import pandas as pd
 import dataframe_sql as sql
 from src.util import func
+from src.transformations import (
+    stg_albums,
+    stg_album_songs,
+    stg_vendors
+)
 
-def lambda_handler(event, context=None):
+def lambda_handler(event, context):
     
     # Load raw data from AWS SNS into Pandas DataFrame
     df_raw_albums = pd.DataFrame.from_dict(event["Records"][0]["Sns"]["Message"])
@@ -10,30 +15,17 @@ def lambda_handler(event, context=None):
     """Section: Initial transformations & SQL Registration for staging tables"""
     # stg_albums
     sql.register_temp_table(
-        frame=(
-            df_raw_albums[func.get_table_schema("stg_albums")]
-        ),
+        frame=stg_albums.run(df_raw_albums),
         table_name="stg_albums"
     )
     # stg_album_songs
     sql.register_temp_table(
-        frame=(
-            pd.json_normalize(
-                df_raw_albums["details"]
-                    .explode("details")
-            )
-            [func.get_table_schema("stg_album_songs")]
-        ),
+        frame=stg_album_songs.run(df_raw_albums),
         table_name="stg_album_songs"
     )
     # stg_vendors
     sql.register_temp_table(
-        frame=(
-            df_raw_albums[["vendor"]]
-                .join(pd.json_normalize(df_raw_albums.vendor))
-                .drop_duplicates(subset=["id"])
-                [func.get_table_schema("stg_vendors")]
-        ),
+        frame=stg_vendors.run(df_raw_albums),
         table_name="stg_vendors"
     )
     
@@ -43,5 +35,3 @@ def lambda_handler(event, context=None):
         "dim_album_songs",
         "dim_vendors"
     ])
-
-lambda_handler(event=func.sample_event())

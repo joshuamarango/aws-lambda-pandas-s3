@@ -1,4 +1,6 @@
 import json
+import os
+from posix import environ
 import dataframe_sql as sql
 import awswrangler as wr
 from ruamel import yaml
@@ -24,13 +26,15 @@ def get_sql_query(table_name:str) -> str:
 
 def write_to_s3(tables:list) -> None:
     """Write Pandas DataFrame to S3 Datalake"""
+    DATALAKE = os.environ.get("DATALAKE")
+    DATABASE = os.environ.get("DATALAKE_DB")
     for table_name in tables:
         input_df = sql.query(get_sql_query(table_name))
         table_partitions = yaml.safe_load(open('./models/source/datalake.yml'))
         partition_cols = [p["name"] for p in table_partitions[table_name]["partitions"]]
         wr.s3.to_parquet(
             df=input_df,
-            path=f"s3://temp-datalake-cn/music_catalog_db/{table_name}",
+            path=f"s3://{DATALAKE}/{DATABASE}/{table_name}",
             index=False,
             compression="gzip",
             use_threads=True,
