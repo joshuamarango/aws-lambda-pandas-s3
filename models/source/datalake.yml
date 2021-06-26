@@ -10,7 +10,7 @@ dim_album_songs:
   partitions:
     - name: song_album_id
 
-dim_album_songs:
+dim_vendors:
   name: dim_vendors
   partitions:
     - name: vendor_id
