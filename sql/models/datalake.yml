@@ -1,0 +1,16 @@
+version: 2
+
+dim_albums:
+  name: dim_albums
+  partitions:
+    - name: album_id
+
+dim_album_songs:
+  name: dim_albums
+  partitions:
+    - name: song_album_id
+
+dim_album_songs:
+  name: dim_vendors
+  partitions:
+    - name: vendor_id

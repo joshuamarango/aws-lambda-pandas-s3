@@ -1,0 +1,32 @@
+version: 2
+
+stg_albums:
+  name: stg_albums
+  columns:
+    - name: id
+    - name: name
+    - name: vendor_id
+    - name: requires_shipping
+    - name: sku
+    - name: taxable
+    - name: status
+    - name: price
+
+stg_album_songs:
+  name: stg_album_songs
+  columns:
+    - name: track_id
+    - name: name
+    - name: album_id
+    - name: media_type_id
+    - name: genre_id
+    - name: composer
+    - name: milliseconds
+    - name: bytes
+    - name: unit_price
+
+stg_vendors:
+  name: stg_vendors
+  columns:
+    - name: id
+    - name: name
