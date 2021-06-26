@@ -1,6 +1,5 @@
 import json
 import os
-from posix import environ
 import dataframe_sql as sql
 import awswrangler as wr
 from ruamel import yaml
