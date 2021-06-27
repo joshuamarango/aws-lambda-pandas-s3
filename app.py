@@ -30,8 +30,4 @@ def lambda_handler(event, context):
     )
     
     # Write dim tables to datalake
-    func.write_to_s3(tables=[
-        "dim_albums",
-        "dim_album_songs",
-        "dim_vendors"
-    ])
+    func.write_to_s3(tables=func.get_datalake_tables())

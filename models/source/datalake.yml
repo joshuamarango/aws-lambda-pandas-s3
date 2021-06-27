@@ -1,5 +1,10 @@
 version: 2
 
+datalake_tables:
+  - name: dim_albums
+  - name: dim_album_songs
+  - name: dim_vendors
+
 dim_albums:
   name: dim_albums
   partitions:

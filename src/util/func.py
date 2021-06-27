@@ -11,6 +11,10 @@ def sample_event() -> dict:
     f_sample_event.close()
     return json_sample_event
 
+def get_datalake_tables() -> list:
+    datalake_tables = yaml.safe_load(open('./models/source/datalake.yml'))
+    return [col["name"] for col in datalake_tables["datalake_tables"]]
+
 def get_table_schema(table_name:str) -> list:
     """Get the columns to filter by for a pandas Dataframe"""
     table_schemas = yaml.safe_load(open('./models/source/schema.yml'))
